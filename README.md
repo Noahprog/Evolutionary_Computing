@@ -23,7 +23,7 @@ important subfolders in main folder:
 In the subfolder Scr are al the scripts needed to run the programm. The main script is player33.java. 
 
 #### Parameters for tuning
-In order to run this programm for a specific function first the parameters have to be changed. The optimal parameters can be found in the report in subfolder "report". The parameters that have to be changed are located in the DifferentialEvolution.java file in row 6-11.
+In order to run this programm for a specific function first the parameters have to be changed. The optimal parameters per function can be found in the report in subfolder "report". The parameters that have to be changed are located in the DifferentialEvolution.java file in row 6-11.
 
 #### Parameters for control
 To use the parameter control option:
