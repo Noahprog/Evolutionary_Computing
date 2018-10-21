@@ -11,7 +11,7 @@ Group project for Evolutionary Computing for group 33. In this assignment we opt
 
 ### Structure
 
-important subfolders in main folder:
+Important subfolders in main folder:
 
 * Eclipse
   * Scr - contains java files used to run the script
