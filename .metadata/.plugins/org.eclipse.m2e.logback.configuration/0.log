@@ -1,0 +1,2 @@
+2018-10-21 11:23:28,859 [Worker-1: Loading available Gradle versions] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2018-10-21 11:24:26,995 [Worker-13: Auto share git projects] WARN  org.eclipse.jgit.util.FS - null
