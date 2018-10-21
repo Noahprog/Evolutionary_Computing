@@ -24,15 +24,18 @@ In the subfolder Scr are al the scripts needed to run the programm. The main scr
 
 #### Parameters for tuning
 In order to run this programm for a specific function first the parameters have to be changed. The optimal parameters per function can be found in the report in subfolder "report". The parameters that have to be changed are located in the DifferentialEvolution.java file in row 6-11.
+Additional for Katsuura:
+* Go to Population.java row 19
+* Change: init() --> initHeuristic()
 
 #### Parameters for control
 To use the parameter control option:
-* Go to DifferentialEvolution.java file row 56
+* Go to DifferentialEvolution.java file row 57
 * Change: DIFFERENTIAL_WEIGHT --> adjustedWeight
 
 ### Running
-
-To run the programm use the following command-line
+First, export the main class player33.class to a runnable JAR file called Submission.jar
+To run the JAR file use the following command-line
 ```
 cd Evolutionary_Computing
 java -jar testrun.jar -submission=player33 -evaluation=EVALUATION  -seed=1
