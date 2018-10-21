@@ -6,7 +6,7 @@ public class DifferentialEvolution {
 	static final int POPULATION_SIZE = 20;
 	static final int BEST_PARENTS = 20;
 	static final double REPLACE_RATE = 1; 
-	static final double CROSS_PORBABILITY = 0.8;
+	static final double CROSS_PROBABILITY = 0.8;
 	static final double  DIFFERENTIAL_WEIGHT = 0.6;
 	static final double  STEPSIZE_COEFFICIENT = 0.0001;
 	static final int DIMENSION = 10;
@@ -54,7 +54,7 @@ public class DifferentialEvolution {
 			Individual parentD = population.getIndividual(d);
 			Individual parentE = population.getIndividual(e);
 			for(int j=0; j<DIMENSION ;j++) {
-				currentForMutation.mutate(parentA, parentB, parentC, parentD, parentE, DIFFERENTIAL_WEIGHT, j); //DIFFERENTIAL_WEIGHT or DIFFERENTIAL_WEIGHT 
+				currentForMutation.mutate(parentA, parentB, parentC, parentD, parentE, DIFFERENTIAL_WEIGHT, j); //DIFFERENTIAL_WEIGHT or adjustedWeight 
 			}
 			mutationPopulation.replace(currentForMutation, i);
 		}
@@ -65,7 +65,7 @@ public class DifferentialEvolution {
 			Individual currentAfterMutation = mutationPopulation.getIndividual(i).clone();
 			for(int j=0; j<DIMENSION ;j++) {
 				double randomNumber = random.nextDouble();
-				currentForCrossover.crossover(currentAfterMutation, j, certainReplacement, CROSS_PORBABILITY, randomNumber);
+				currentForCrossover.crossover(currentAfterMutation, j, certainReplacement, CROSS_PROBABILITY, randomNumber);
 			}
 			crossoverPopulation.replace(currentForCrossover, i);
 		}
