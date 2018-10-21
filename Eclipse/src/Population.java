@@ -16,7 +16,7 @@ public class Population {
 	public void populationInit() {
 		for (int i=0; i<populationSize; i++) {
 			this.population[i] = new Individual(evaluation);
-			this.population[i].init();
+			this.population[i].init(); //.init() or initHeuristic() 
 		}	
 	}
 

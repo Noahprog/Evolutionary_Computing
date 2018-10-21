@@ -1,2 +1,5 @@
 
 *.xmi
+.DS_Store
+.metadata/.mylyn/.tasks.xml.zip
+*.xml

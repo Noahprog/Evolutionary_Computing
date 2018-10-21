@@ -5,16 +5,16 @@ import org.vu.contest.ContestEvaluation;
 
 public class Individual implements Comparable<Individual> {
 
-	private int dimensions = 10;
-	private int lowerbound = -5;
-	private int upperbound = 5; 
+	static final int DIMENSIONS = 10;
+	static final int LOWERBOUND = -5;
+	static final int UPPERBOUND = 5;
 
 	private double[] individual;
 	private double individualFitness;
 	ContestEvaluation evaluation;
 
 	public Individual(ContestEvaluation evaluation) { 
-		this.individual = new double[dimensions];
+		this.individual = new double[DIMENSIONS];
 		this.individualFitness = Double.NEGATIVE_INFINITY;
 		this.evaluation = evaluation;
 	}
@@ -22,21 +22,34 @@ public class Individual implements Comparable<Individual> {
 	public void init() { 
 		Random random = new Random();
 		double startValues [] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		double startValuesKatsuura [] = {0.23, 0.38, -0.79, 0.29, 0.3, -0.06, -0.24, -0.03, -0.09, 0.02};
-		for(int i=0; i<dimensions; i++) {
+		for(int i=0; i<DIMENSIONS; i++) {
 			if(random.nextDouble() > 0.5) {
-				individual[i] = startValuesKatsuura[i] + 0.1 * (lowerbound + (upperbound - lowerbound) * random.nextDouble());
+				individual[i] = startValues[i] + (LOWERBOUND + (UPPERBOUND - LOWERBOUND) * random.nextDouble());
 
 			} else {
-				individual[i] = startValuesKatsuura[i] - 0.1 * (lowerbound + (upperbound - lowerbound) * random.nextDouble());
+				individual[i] = startValues[i] - (LOWERBOUND + (UPPERBOUND - LOWERBOUND) * random.nextDouble());
 			}
+		}
+		individualFitness = (double) evaluation.evaluate(individual);
+	}
+	
+	public void initHeuristic() { 
+		Random random = new Random();
+		double startValuesKatsuura [] = {0.23, 0.38, -0.79, 0.29, 0.3, -0.06, -0.24, -0.03, -0.09, 0.02};
+		for(int i=0; i<DIMENSIONS; i++) {
+			if(random.nextDouble() > 0.5) {
+				individual[i] = startValuesKatsuura[i] + (0.1 * (LOWERBOUND + (UPPERBOUND - LOWERBOUND) * random.nextDouble()));
+
+			} else {
+				individual[i] = startValuesKatsuura[i] - (0.1 * (LOWERBOUND + (UPPERBOUND - LOWERBOUND) * random.nextDouble()));
+			}		
 		}
 		individualFitness = (double) evaluation.evaluate(individual);
 	}
 
 	public Individual clone() {
 		Individual copy = new Individual(evaluation);
-		for(int i=0; i<dimensions; i++) {
+		for(int i=0; i<DIMENSIONS; i++) {
 			copy.individual[i] = this.individual[i];
 		}
 		copy.individualFitness = this.individualFitness;
@@ -78,7 +91,7 @@ public class Individual implements Comparable<Individual> {
 	}
 
 	public void correctSearchSpace() {
-		for(int i=0; i<dimensions; i++) {
+		for(int i=0; i<DIMENSIONS; i++) {
 			while(individual[i] > 5 || individual[i] < -5) {
 				if(individual[i] > 5) {
 					individual[i] = 5 - (individual[i] - 5);	
@@ -102,7 +115,6 @@ public class Individual implements Comparable<Individual> {
 		return individualFitness;
 	}
 
-	// Utils 
 	public static double round(double value, int places) {
 		if (places < 0) throw new IllegalArgumentException();
 

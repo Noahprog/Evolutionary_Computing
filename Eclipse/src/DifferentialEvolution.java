@@ -3,11 +3,12 @@ import org.vu.contest.ContestEvaluation;
 
 public class DifferentialEvolution {
 
-	static final int POPULATION_SIZE = 2500;
-	static final int BEST_PARENTS = 850;
-	static final double REPLACE_RATE = 0.95; 
-	static final double CROSS_PORBABILITY = 0.25;
-	static final double  DIFFERENTIAL_WEIGHT = 0.025;
+	static final int POPULATION_SIZE = 20;
+	static final int BEST_PARENTS = 20;
+	static final double REPLACE_RATE = 1; 
+	static final double CROSS_PORBABILITY = 0.8;
+	static final double  DIFFERENTIAL_WEIGHT = 0.6;
+	static final double  STEPSIZE_COEFFICIENT = 0.0001;
 	static final int DIMENSION = 10;
 
 	private Population population;
@@ -23,7 +24,7 @@ public class DifferentialEvolution {
 	}
 
 	public void iterate(int q) { 
-		double adjustedWeight = DIFFERENTIAL_WEIGHT - q * 0.0001;	
+		double adjustedWeight = DIFFERENTIAL_WEIGHT - q * STEPSIZE_COEFFICIENT;	
 		Population mutationPopulation = population.clone();
 		Population crossoverPopulation = population.clone();			
 		Random random = new Random();
@@ -53,7 +54,7 @@ public class DifferentialEvolution {
 			Individual parentD = population.getIndividual(d);
 			Individual parentE = population.getIndividual(e);
 			for(int j=0; j<DIMENSION ;j++) {
-				currentForMutation.mutate(parentA, parentB, parentC, parentD, parentE, DIFFERENTIAL_WEIGHT, j);
+				currentForMutation.mutate(parentA, parentB, parentC, parentD, parentE, DIFFERENTIAL_WEIGHT, j); //DIFFERENTIAL_WEIGHT or DIFFERENTIAL_WEIGHT 
 			}
 			mutationPopulation.replace(currentForMutation, i);
 		}
